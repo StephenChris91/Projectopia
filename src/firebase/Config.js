@@ -1,28 +1,30 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import 'firebase/storage'
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyChCs4P_8_yI9O4CN9n9JXia6iazilw6wk",
-    authDomain: "projectopia-f2537.firebaseapp.com",
-    projectId: "projectopia-f2537",
-    storageBucket: "projectopia-f2537.appspot.com",
-    messagingSenderId: "804645985616",
-    appId: "1:804645985616:web:e193bf4c70479007fd6055"
-  };
+  apiKey: "AIzaSyBNh8bsACFkSH3arxhCl8P36GoWLPsSoxs",
+  authDomain: "projectopia-86c62.firebaseapp.com",
+  projectId: "projectopia-86c62",
+  storageBucket: "projectopia-86c62.appspot.com",
+  messagingSenderId: "666314080253",
+  appId: "1:666314080253:web:acecb2b25ef7197abb6394"
+};
 
 
 
 // initialize firebase
-firebase.initializeApp(firebaseConfig);
+const firebaseApp =  firebase.initializeApp(firebaseConfig);
 
 
 //initialize services
 const projectopiadb = firebase.firestore();
 const projectopiaauth = firebase.auth();
+const projectopiastorage = firebase.storage();
 
 //setup timestamp
 const timestamp = firebase.firestore.Timestamp
 
-export { projectopiadb, projectopiaauth, timestamp };
+export { projectopiadb, projectopiaauth, timestamp, projectopiastorage };
