@@ -1,15 +1,44 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Select from 'react-select'
+import { useCollection } from '../../hooks/useCollection';
 
 //styles
 import './Create.css';
 
+const categories = [
+    { value: 'rack & stack', label: 'Rack & Stack' },
+    { value: 'migration', label: 'Migration' },
+    { value: 'switches', label: 'Switches' },
+    { value: 'routing', label: 'Routing' },
+
+    //users
+    
+]
+
 export default function Create (){
+
+    const { documents, error } = useCollection('users');
+    const [users, setUsers] = useState([]);
 
     const [name, setName] = useState('');
     const [details, setDetails] = useState('');
     const [dueDate, setDueDate] = useState('');
-    const [category, setCategory] = useState('');
-    const [assignedUsers, setAsignedUsers] = useState('');
+    const [category, setCategory] = useState(null);
+    const [assignedUsers, setAsignedUsers] = useState([]);
+
+    useEffect(() => {
+        if(documents){
+            const options = documents.map(user => {
+                return {
+                    value: user,
+                    label: user.displayName
+                }
+            })
+
+            setUsers(options);
+        }
+                
+    }, [documents]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -50,9 +79,18 @@ export default function Create (){
 
                 <label>
                     <span>Project Category:</span>
+                    <Select 
+                        onChange={(option) => setCategory(option)}
+                        options={categories}
+                    />
                 </label>
                 <label>
                     <span>Asign to:</span>
+                    <Select 
+                        onChange={(options) => setAsignedUsers(options)}
+                        options={users}
+                        isMulti                 
+                    />
                 </label>
 
                 <button className="btn">Add Project</button>
