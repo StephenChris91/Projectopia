@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "projectopia-f2537"
-  }
+    "default": "projectopia-f2537",
+    "projectopia": "projectopia-86c62"
+  },
+  "targets": {}
 }

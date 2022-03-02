@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
+import logo from '../assets/logo.png'
 
 
 //styles
@@ -16,6 +17,7 @@ const Navbar = () => {
             <div className="navbar">
                 <ul>
                     <li className="logo">
+                        <img src={logo} alt="logo" />
                         <span>Projectopia</span>
                     </li>
 
