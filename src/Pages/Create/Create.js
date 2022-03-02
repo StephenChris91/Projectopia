@@ -10,10 +10,10 @@ import { useHistory } from 'react-router-dom';
 import './Create.css';
 
 const categories = [
-    { value: 'Rack & Stack', label: 'Rack & Stack' },
-    { value: 'Migration', label: 'Migration' },
-    { value: 'Switches', label: 'Switches' },
-    { value: 'Routing', label: 'Routing' },
+    { value: 'rack & stack', label: 'Rack & Stack' },
+    { value: 'migration', label: 'migration' },
+    { value: 'switches', label: 'Switches' },
+    { value: 'routing', label: 'Routing' },
 
     //users
     

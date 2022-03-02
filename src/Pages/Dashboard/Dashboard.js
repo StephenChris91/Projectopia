@@ -30,10 +30,10 @@ export default function Dashboard () {
                     }
                 })
                 return assignedToMe
-            case 'Migration':
-            case 'Routing':
-            case 'Switches':
-            case 'Rack & Stack':
+            case 'migration':
+            case 'routing':
+            case 'switches':
+            case 'rack & stack':
                 console.log(document.category, currentFilter)
                 return document.category === currentFilter;
             default: 
