@@ -4,16 +4,16 @@ import { useCollection } from '../../hooks/useCollection';
 import { timestamp } from '../../firebase/Config';
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useFirestore } from "../../hooks/useFirestore";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 //styles
 import './Create.css';
 
 const categories = [
-    { value: 'rack & stack', label: 'Rack & Stack' },
-    { value: 'migration', label: 'migration' },
-    { value: 'switches', label: 'Switches' },
-    { value: 'routing', label: 'Routing' },
+    { value: 'one off', label: 'One Off' },
+    { value: 'short term', label: 'Short Term' },
+    { value: 'long term', label: 'Long Term' },
+    { value: 'full time', label: 'Full Time' },
 
     //users
     
@@ -21,7 +21,7 @@ const categories = [
 
 export default function Create (){
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const { documents, error } = useCollection('users');
     const [users, setUsers] = useState([]);
@@ -87,7 +87,7 @@ export default function Create (){
 
         await addDocument(project);
         if(!response.error){
-            history.push('/')
+            navigate('/')
         }
     }
 

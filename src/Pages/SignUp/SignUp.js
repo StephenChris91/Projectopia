@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSignup } from '../../hooks/useSignup';
+import { Button } from 'react-bootstrap'
 
 //styles
 import './SignUp.css';
@@ -84,7 +85,7 @@ export default function SignUp () {
                     {thumbnailError && <div className="error">{thumbnailError}</div>}   
                 </label>
                 {isPending && <button className="btn">Loading...</button>}
-                {!isPending && <button className='btn'>Sign Up</button>}
+                {!isPending && <button className="btn">Submit</button>}
                 {error && <div className="error">{error}</div>}
             </form>
         );

@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Routes, Route , Navigate} from 'react-router-dom';
 import { useAuthContext } from './hooks/useAuthContext';
 
 import './App.css'
@@ -12,10 +12,13 @@ import Create from './Pages/Create/Create';
 import Navbar from './Components/Navbar';
 import Sidebar from './Components/Sidebar';
 import OnlineUsers from './Components/OnlineUsers';
+import Profile from './Pages/Profile/Profile';
+import  ProtectedRoutes from './hooks/ProtectedRoutes';
 
 
 
 function App() {
+  
 
   const { user, authIsReady } = useAuthContext();
 
@@ -27,29 +30,16 @@ function App() {
           {user && <Sidebar />}
           <div className="container">
             <Navbar />
-
-              <Switch>
-                <Route exact path="/">
-                  {!user && <Redirect to="/login" />}
-                  {user && <Dashboard/>}
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route element={<ProtectedRoutes />}>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/create" element={<Create />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/project/:id" element={<Project />} />
                 </Route>
-                <Route path="/create">
-                  {!user && <Redirect to="/login" />}
-                  {user && <Create/>}
-                </Route>
-                <Route path="/Project/:id">
-                  {!user && <Redirect to="/login" />}
-                  {user && <Project/>}
-                </Route>
-                <Route path="/login">
-                  {user && <Redirect to="/" />}
-                  {!user && <Login/>}
-                </Route>
-                <Route path="/signup">
-                  {user && <Redirect to="/" />}
-                  {!user && <SignUp/>}
-                </Route>
-              </Switch>
+              </Routes>
             </div>
             {user && <OnlineUsers />}
           </BrowserRouter>

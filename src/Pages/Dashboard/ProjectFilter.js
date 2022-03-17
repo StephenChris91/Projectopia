@@ -1,4 +1,4 @@
-const filterList = ['all', 'mine', 'migration', 'routing', 'rack & stack', 'switches']
+const filterList = ['all', 'mine', 'one off', 'short term', 'long term', 'full time']
 
 
 

@@ -44,6 +44,10 @@ ul {
   background-color: var(--primary-color);
 }
 
+.edit:hover{
+  border: 1px solid #fff;
+}
+
 /* forms */
 label {
   display: block;

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom'
 
 
 //styles
@@ -15,13 +16,19 @@ import Avatar from './Avatar';
 export default function Sidebar () {
 
     const { user } = useAuthContext();
+    const navigate = useNavigate()
+
+    const showProfile = () => {
+        navigate('/profile')
+    }
     
         return (
             <div className="sidebar">
                 <div className="sidebar-content">
-                    <div className="user">
+                    <div className="user" >
                         <Avatar src={user.photoURL} />
                         <p>Hey {user.displayName}</p>
+                        <button className='btn edit' onClick={showProfile}>Edit Profile</button>
                     </div>
                     <nav className="links">
                         <ul>

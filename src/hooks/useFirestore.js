@@ -81,6 +81,8 @@ export const useFirestore = (collection) => {
     }
   }
 
+  
+
   useEffect(() => {
     return () => setIsCancelled(true)
   }, [])

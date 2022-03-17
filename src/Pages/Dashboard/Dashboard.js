@@ -3,7 +3,8 @@ import ProjectList from '../../Components/ProjectList';
 import { useCollection } from '../../hooks/useCollection';
 import ProjectFilter from './ProjectFilter';
 import { useAuthContext } from '../../hooks/useAuthContext'
-
+import { useIdleTimer } from 'react-idle-timer';
+import { useLogout } from '../../hooks/useLogout';
 
 //styles
 import './Dashboard.css';
@@ -13,6 +14,8 @@ export default function Dashboard () {
     const { user } = useAuthContext();
     const {documents, error} = useCollection('projects');
     const [currentFilter, setCurrentFilter] = useState('all')
+
+    const { logout } = useLogout()
 
     const changeFilter = (newFilter) => {
         setCurrentFilter(newFilter)
@@ -30,16 +33,27 @@ export default function Dashboard () {
                     }
                 })
                 return assignedToMe
-            case 'migration':
-            case 'routing':
-            case 'switches':
-            case 'rack & stack':
+            case 'one off':
+            case 'long term':
+            case 'short term':
+            case 'full time':
                 console.log(document.category, currentFilter)
                 return document.category === currentFilter;
             default: 
                 return true
         }
     }) : null
+
+
+    const handleOnIdle = event => {
+        logout()
+    }
+
+   useIdleTimer({
+        timeout: 1000 * 60 * 5,
+        onIdle: handleOnIdle,
+        debounce: 500
+   })
 
     return (
         <div className="Dashboard">
